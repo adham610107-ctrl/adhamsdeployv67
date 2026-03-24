@@ -1,0 +1,134 @@
+/* Tizim Ranglari (Premium Eye-Comfort) */
+:root {
+    --bg-color: #F4F7F6;
+    --card-bg: #FFFFFF;
+    --text-main: #1E293B;
+    --primary-blue: #1A2A6C;
+    --accent-green: #10B981;
+    --error-red: #EF4444;
+    --correct-bg: rgba(16, 185, 129, 0.2);
+    --wrong-bg: rgba(239, 68, 68, 0.2);
+    --glass-bg: rgba(255, 255, 255, 0.85);
+    --border-color: #E2E8F0;
+}
+
+.dark-mode {
+    --bg-color: #0F172A;
+    --card-bg: #1E293B;
+    --text-main: #F8FAFC;
+    --primary-blue: #3B82F6;
+    --glass-bg: rgba(30, 41, 59, 0.85);
+    --border-color: #334155;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, sans-serif; -webkit-tap-highlight-color: transparent; }
+body { background-color: var(--bg-color); color: var(--text-main); display: flex; flex-direction: column; min-height: 100vh; transition: 0.3s; overflow-x: hidden; user-select: none; }
+
+.hidden { display: none !important; }
+.active { display: flex; flex-direction: column; flex-grow: 1; }
+.screen { flex-grow: 1; display: flex; flex-direction: column; }
+.container { max-width: 1200px; margin: 0 auto; padding: 20px; width: 100%; }
+
+/* Animatsiyalar */
+.fade-in { animation: fadeIn 0.6s ease; }
+.slide-up { animation: slideUp 0.5s ease; }
+.pulse-anim { animation: pulse 2s infinite; }
+.gravity-fall { animation: fallDown 2s forwards cubic-bezier(0.55, 0.085, 0.68, 0.53); pointer-events: none; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(26, 42, 108, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(26, 42, 108, 0); } 100% { box-shadow: 0 0 0 0 rgba(26, 42, 108, 0); } }
+@keyframes fallDown { to { transform: translateY(150vh) rotate(15deg); opacity: 0; } }
+
+/* Global Nav */
+.global-nav { padding: 10px 20px; background: var(--card-bg); display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 1000; }
+.nav-logo { width: 35px; border-radius: 50%; }
+.logo-text { font-weight: 900; font-size: 1rem; color: var(--primary-blue); margin-left: 8px; }
+.nav-right { display: flex; align-items: center; gap: 10px; }
+.nav-btn-small { background: transparent; border: 2px solid var(--error-red); color: var(--error-red); padding: 7px 12px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 0.8rem; }
+.theme-btn { background: transparent; border: 1px solid var(--primary-blue); color: var(--text-main); padding: 7px 12px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 0.8rem; }
+.timer { font-family: monospace; font-size: 1.2rem; font-weight: bold; color: var(--error-red); background: var(--wrong-bg); padding: 5px 10px; border-radius: 8px; }
+
+/* 1. Welcome Screen (Premium Bino Foni) */
+#welcome-screen { position: relative; height: 100vh; overflow: hidden; }
+.bg-image { position: absolute; inset: 0; background: url('bino.png') no-repeat center center/cover; z-index: 1; }
+.overlay { position: absolute; inset: 0; background: rgba(15, 23, 42, 0.85); z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.top-left-logo { position: absolute; top: 20px; left: 20px; width: 70px; border-radius: 50%; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+.hero-content { text-align: center; color: white; max-width: 900px; padding: 20px; z-index: 3; }
+.huge-title { font-size: 3rem; margin-bottom: 15px; font-weight: 900; }
+.subtitle { font-size: 1.1rem; line-height: 1.5; margin-bottom: 20px; color: #E2E8F0; }
+.author { font-size: 0.9rem; color: #94A3B8; margin-bottom: 30px; font-style: italic; }
+
+.login-box { max-width: 450px; margin: 0 auto 30px auto; padding: 25px; border-radius: 20px; }
+.premium-input { width: 100%; padding: 15px; border-radius: 12px; border: 2px solid var(--primary-blue); font-size: 1rem; margin-bottom: 15px; text-align: center; background: rgba(255,255,255,0.95); font-weight: bold; }
+.btn-premium { width: 100%; background: var(--primary-blue); color: white; padding: 15px; border: none; border-radius: 12px; font-size: 1.1rem; font-weight: bold; cursor: pointer; box-shadow: 0 10px 20px rgba(26, 42, 108, 0.4); }
+.glass-panel { background: var(--glass-bg); backdrop-filter: blur(10px); border: 1px solid var(--border-color); border-radius: 15px; padding: 15px; color: var(--text-main); }
+.social-links img { width: 35px; margin: 0 10px; transition: 0.3s; cursor: pointer; }
+
+/* 2. Dashboard (Moslashuvchan Grid Integration) */
+.section-title { text-align: center; color: var(--primary-blue); margin-bottom: 20px; font-size: 1.8rem; font-weight: bold; }
+.stats-overview { display: flex; justify-content: space-around; font-size: 1.1rem; margin-bottom: 25px; }
+.text-success { color: var(--accent-green); font-weight: bold; }
+.text-error { color: var(--error-red); font-weight: bold; }
+
+/* Tashlagan namunangizdagi mobil grid */
+.grid-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.card-btn { background: var(--card-bg); border: 2px solid var(--primary-blue); color: var(--text-main); padding: 20px; border-radius: 12px; cursor: pointer; transition: 0.3s; font-size: 0.95rem; font-weight: bold; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+.card-btn:hover { background: var(--primary-blue); color: white; transform: translateY(-3px); }
+.btn-special, .btn-dark, .error-btn { grid-column: span 2; padding: 15px; }
+.btn-special { background: var(--accent-green); color: white; border-color: var(--accent-green); }
+.btn-dark { background: #2D3436; color: white; border-color: #2D3436; }
+.error-btn { border-color: var(--error-red); color: var(--error-red); }
+.error-btn:disabled { opacity: 0.4; cursor: not-allowed; border-color: gray; color: gray; }
+
+/* 3. Test Area (Kichik Karta Integratsiyasi) */
+.progress-container { height: 6px; background: var(--border-color); width: 100%; position: sticky; top: 60px; z-index: 99; }
+#progress-bar { height: 100%; background: var(--accent-green); width: 0%; transition: width 0.4s ease; }
+.test-wrapper { display: flex; flex-direction: column; gap: 15px; padding: 15px 10px; }
+
+/* MOBILDA KICHIK VA SCROLL BO'LADIGAN MAP */
+.map-wrapper { overflow-x: auto; white-space: nowrap; padding-bottom: 10px; width: 100%; -webkit-overflow-scrolling: touch; }
+.indicator-map { display: flex; gap: 8px; justify-content: flex-start; }
+.dot { min-width: 32px; height: 32px; border-radius: 8px; background: var(--card-bg); border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: center; font-weight: bold; cursor: pointer; transition: 0.3s; font-size: 0.8rem; flex-shrink: 0; }
+.dot.active-dot { border: 2px solid var(--primary-blue); color: var(--primary-blue); transform: scale(1.05); }
+.dot.correct { background: var(--accent-green); border-color: var(--accent-green); color: white; }
+.dot.wrong { background: var(--error-red); border-color: var(--error-red); color: white; }
+.only-desktop { display: none !important; }
+
+/* Savol Karti - Maksimal Ekran Maydoni */
+.main-test-area { width: 100%; }
+.question-card { background: var(--card-bg); padding: 25px 20px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-left: 6px solid var(--primary-blue); min-height: 250px; }
+.question-card h2 { font-size: 1.2rem; margin-bottom: 20px; line-height: 1.4; color: var(--text-main); }
+.option-btn { display: block; width: 100%; text-align: left; padding: 15px; margin-bottom: 10px; background: var(--bg-color); border: 1px solid transparent; border-radius: 10px; font-size: 1rem; cursor: pointer; transition: 0.2s; color: var(--text-main); }
+.option-btn:hover:not(:disabled) { background: var(--card-bg); border-color: var(--primary-blue); }
+
+.option-btn.correct-ans { background-color: var(--correct-bg) !important; border-color: var(--accent-green) !important; color: var(--accent-green); font-weight: bold; }
+.option-btn.wrong-ans { background-color: var(--wrong-bg) !important; border-color: var(--error-red) !important; color: var(--error-red); text-decoration: line-through; }
+
+.test-nav { display: flex; justify-content: space-between; gap: 10px; margin-top: 15px; }
+.nav-control { background: var(--card-bg); color: var(--primary-blue); border: 2px solid var(--primary-blue); padding: 12px 25px; border-radius: 10px; font-weight: bold; cursor: pointer; font-size: 1rem; flex: 1; text-align: center; }
+.finish-btn { background: #D35400; border-color: #D35400; color: white; font-size: 0.9rem; flex: 2; }
+
+/* RESPONSIVE BREAKPOINTS (Desktop) */
+@media (min-width: 768px) {
+    .huge-title { font-size: 4.5rem; }
+    .grid-layout { grid-template-columns: repeat(4, 1fr); gap: 25px; }
+    .btn-special, .btn-dark, .error-btn { grid-column: span 1; padding: 20px; }
+    
+    .test-wrapper { flex-direction: row; gap: 30px; align-items: flex-start; padding: 30px 20px; }
+    .test-sidebar { width: 220px; flex-shrink: 0; position: sticky; top: 100px; }
+    .map-wrapper { overflow: visible; white-space: normal; }
+    .indicator-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; justify-content: center; }
+    .only-desktop { display: flex !important; }
+    .live-score { flex-direction: column; text-align: center; font-weight: bold; margin-bottom: 15px; }
+    .question-card h2 { font-size: 1.5rem; }
+    .navigation { justify-content: flex-end; }
+    .nav-control { flex: 0 0 auto; width: auto; }
+}
+
+/* Footer */
+footer { text-align: center; padding: 20px; background: var(--card-bg); border-top: 1px solid var(--border-color); margin-top: auto; }
+footer p { font-size: 0.9rem; color: #718096; margin-bottom: 10px; font-weight: 500; }
+.footer-socials img { width: 24px; margin: 0 10px; transition: 0.3s; filter: grayscale(100%); opacity: 0.6; }
+.footer-socials img:hover { filter: grayscale(0%); opacity: 1; transform: scale(1.1); }
+
+

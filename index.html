@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>CHDPU MUT - Pro Imtihon Platformasi</title>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="light-mode" id="main-body">
+
+    <div class="global-nav hidden" id="global-nav">
+        <div class="logo-area" onclick="logout()" title="Tizimdan chiqish" style="cursor: pointer;">
+            <img src="logo.png" alt="ChDPU Logo" class="nav-logo">
+            <span class="logo-text">CHDPU MUT</span>
+        </div>
+        <div class="nav-right">
+            <button id="exit-test-btn" class="nav-btn-small hidden" onclick="exitTest()">🚪 Testdan chiqish</button>
+            <button id="theme-toggle" onclick="toggleTheme()" class="theme-btn">🌙 Rejim</button>
+            <div id="exam-timer" class="timer hidden">15:00</div>
+        </div>
+    </div>
+
+    <div id="welcome-screen" class="screen active fade-in">
+        <div class="bg-image"></div>
+        <div class="overlay">
+            <img src="logo.png" alt="ChDPU Logo" class="top-left-logo">
+            
+            <div class="hero-content slide-up">
+                <h1 class="huge-title">Xush kelibsiz!</h1>
+                <p class="subtitle">
+                    Chirchiq Davlat Pedagogika Universiteti san’atshunoslik fakulteti musiqiy ta’lim yo’nalishi 2025-2026 yakuniy imtihon uchun testar to’plami platformasiga
+                </p>
+                <p class="author">Talabalar uchun maxsus ishlab chiqilgan professional tayyorgarlik tizimi.</p>
+                
+                <div class="login-box glass-panel">
+                    <input type="text" id="student-name" class="premium-input" placeholder="Ism va Familiyangizni kiriting..." autocomplete="off">
+                    <button class="btn-premium pulse-anim" onclick="handleLogin()">Tizimga kirish</button>
+                </div>
+
+                <div class="social-links">
+                    <a href="https://t.me/atamuratovs" target="_blank"><img src="tg.png" alt="Telegram"></a>
+                    <a href="https://www.instagram.com/strovln" target="_blank"><img src="insta.png" alt="Instagram"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="dashboard-screen" class="screen hidden fade-in">
+        <div class="container main-container">
+            <h2 class="section-title">Salom, <span id="display-student-name" class="text-success"></span>!</h2>
+            
+            <div class="stats-overview glass-panel">
+                <div class="stat-box">O'zlashtirildi: <b id="total-learned" class="text-success">0</b> / 800</div>
+                <div class="stat-box">Xatolar: <b id="total-errors" class="text-error">0</b></div>
+            </div>
+
+            <div class="grid-layout">
+                <button class="card-btn" onclick="startTest('musiqa_nazariyasi')">🎼 Musiqa nazariyasi</button>
+                <button class="card-btn" onclick="startTest('cholgu_ijrochiligi')">🎻 Cholg'u ijrochiligi</button>
+                <button class="card-btn" onclick="startTest('vokal_ijrochiligi')">🎤 Vokal ijrochiligi</button>
+                <button class="card-btn" onclick="startTest('metodika_repertuar')">📚 Metodika va repertuar</button>
+                <button class="card-btn btn-special" onclick="startTest('mixed')">🎲 786...800 Aralash</button>
+                <button class="card-btn btn-dark" onclick="toggleChapters()">📑 Barcha testlar (1-800)</button>
+                <button class="card-btn error-btn" id="error-work-btn" onclick="startErrorWork()" disabled>🛠 Xatolar ustida ishlash</button>
+            </div>
+
+            <div id="chapters-grid" class="hidden chapters-container slide-up"></div>
+        </div>
+    </div>
+
+    <div id="test-screen" class="screen hidden fade-in">
+        <div class="progress-container">
+            <div id="progress-bar"></div>
+        </div>
+        
+        <div class="container test-wrapper">
+            <div class="test-sidebar">
+                <div class="live-score glass-panel only-desktop">
+                    ✅ <span id="score-correct" class="text-success">0</span> | ❌ <span id="score-wrong" class="text-error">0</span>
+                </div>
+                <div class="map-wrapper">
+                    <div class="indicator-grid indicator-map" id="map"></div>
+                </div>
+            </div>
+
+            <div class="main-test-area">
+                <div id="question-box" class="q-card question-card slide-up"></div>
+                <div class="navigation test-nav">
+                    <button class="nav-btn nav-control" onclick="move(-1)">⬅️</button>
+                    <button class="nav-btn btn-finish finish-btn hidden" id="finish-trigger" onclick="finishExam()">Yakunlash ✔️</button>
+                    <button class="nav-btn nav-control" onclick="move(1)">➡️</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer id="main-footer" class="hidden">
+        <p>💠 Adham’s development &copy; 2026</p>
+        <div class="footer-socials">
+            <a href="https://t.me/atamuratovs" target="_blank"><img src="tg.png" alt="TG"></a>
+            <a href="https://www.instagram.com/strovln" target="_blank"><img src="insta.png" alt="IN"></a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
